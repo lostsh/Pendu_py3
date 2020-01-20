@@ -1,7 +1,5 @@
 from random import *
-"""
-Sadly, all this code is in french you cand found the english version on the file 'penglish.py' 
-"""
+
 d0=["=========="]
 d1=["_         ","|         ","|         ","|         ","|         ","=========="]
 d2=["_______   ","|         ","|         ","|         ","|         ","=========="]
@@ -13,15 +11,13 @@ d7=["_______   ","|     |   ","|     0   ","|    -I-  ","|         ","==========
 d8=["_______   ","|     |   ","|     0   ","|    -I-  ","|    /    ","=========="]
 d9=["_______   ","|     |   ","|     0   ","|    -I-  ","|    / \  ","=========="]
 
-dico=["bonjour","fraise","bleu","poubelle","magnifique","licorne"]
+dico=["easy","code","learning","potatoes","consumation","explain"]
 mot=dico[randrange(0,len(dico))]
 #ci dessu mon choix aleatoire de mot
 
 chmot=[]
 for i in mot: chmot.append(i)
-#ci dessu je convertis le mot en liste de lettre, pour le manipule plus facilement
-
-#print(mot,"\n",chmot,"\n")
+#the world became an array
 
 print("Le mot que vous cherchez est composé de",len(mot),"lettres.")
 print(chmot[0],"_ "*(len(mot)-2),chmot[len(mot)-1])
@@ -63,6 +59,9 @@ while (usr != chmot and faux < 10):
         print("\n",lettrevrai)
     elif(not lettre in chmotcompare):
         faux+=1
+        """
+        Okay it's sooo so so so ugly, but in py3 there not have switch, and i don't maka a duble list ... sorrryyyy everyone it's too sad
+        """
         if(faux==1):print(d0[0],"\n")
         elif(faux==2):
             for i in range(len(d1)):
