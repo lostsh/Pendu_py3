@@ -13,29 +13,25 @@ d9=["_______   ","|     |   ","|     0   ","|    -I-  ","|    / \  ","==========
 
 dico=["easy","code","learning","potatoes","consumation","explain"]
 mot=dico[randrange(0,len(dico))]
-#ci dessu mon choix aleatoire de mot
 
 chmot=[]
 for i in mot: chmot.append(i)
-#the world became an array
 
-print("Le mot que vous cherchez est composé de",len(mot),"lettres.")
+print("The word you are looking for consists of",len(mot),"letters.")
 print(chmot[0],"_ "*(len(mot)-2),chmot[len(mot)-1])
 
-usr=[""]*(len(chmot))
-#print("usr",usr)
-usr[0]=chmot[0]
-#print("usr",usr)
-usr[-1]=chmot[-1]
-#print("usr:",usr)
 
-faux=0
-lettresfauses=[]#j'ai ajouter ca a la fin pour le fun
+usr=[""]*(len(chmot))
+usr[0]=chmot[0]
+usr[-1]=chmot[-1]
+
+lettresfauses=[]
+faux =0
+#array of the incorrect lettres
 
 chmotcompare=chmot[:]
 del chmotcompare[0]
 del chmotcompare[-1]
-#print("\n chmotcompre:",chmotcompare,"\n")
 
 while (usr != chmot and faux < 10):
     lettre = input(":\>")
@@ -43,7 +39,7 @@ while (usr != chmot and faux < 10):
         place = int(chmot.index(lettre))
         if(not usr[place] == ''):
             localchmot=chmot[:]
-            #print("localchmot",localchmot)
+            
             localchmot[chmot.index(lettre)]=(0)
             place=int(localchmot.index(lettre))
         usr[place]=lettre
@@ -59,9 +55,7 @@ while (usr != chmot and faux < 10):
         print("\n",lettrevrai)
     elif(not lettre in chmotcompare):
         faux+=1
-        """
-        Okay it's sooo so so so ugly, but in py3 there not have switch, and i don't maka a duble list ... sorrryyyy everyone it's too sad
-        """
+        
         if(faux==1):print(d0[0],"\n")
         elif(faux==2):
             for i in range(len(d1)):
