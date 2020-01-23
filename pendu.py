@@ -12,90 +12,79 @@ d8=["_______   ","|     |   ","|     0   ","|    -I-  ","|    /    ","==========
 d9=["_______   ","|     |   ","|     0   ","|    -I-  ","|    / \  ","=========="]
 
 dico=["easy","code","learning","potatoes","consumation","explain"]
-mot=dico[randrange(0,len(dico))]
+world=dico[randrange(0,len(dico))]
 
-chmot=[]
-for i in mot: chmot.append(i)
+def afficherDessin(nbCharWrong):
+    if(nbCharWrong==1):
+        print(d0[0])
+    elif(nbCharWrong==2):
+        for i in range(len(d1)):print(d1[i])
+    elif(nbCharWrong==3):
+        for i in range(len(d2)):print(d2[i])
+    elif(nbCharWrong==4):
+        for i in range(len(d3)):print(d3[i])
+    elif(nbCharWrong==5):
+        for i in range(len(d4)):print(d4[i])
+    elif(nbCharWrong==6):
+        for i in range(len(d5)):print(d5[i])
+    elif(nbCharWrong==7):
+        for i in range(len(d6)):print(d6[i])
+    elif(nbCharWrong==8):
+        for i in range(len(d7)):print(d7[i])
+    elif(nbCharWrong==9):
+        for i in range(len(d8)):print(d8[i])
+    elif(nbCharWrong==10):
+        for i in range(len(d9)):print(d9[i])
 
-print("The word you are looking for consists of",len(mot),"letters.")
-print(chmot[0],"_ "*(len(mot)-2),chmot[len(mot)-1])
+def update(lettresVrai):
+    guessWorld=[]
+    for i in lettresVrai:
+        if(i==''):
+            guessWorld+="_ "
+        else:
+            guessWorld+=i
+    for i in guessWorld:
+        print(i,sep='',end='')
+    print()
+    return guessWorld
+
+def prompt(lettresFausses, lettresVrai):
+    afficherDessin(len(lettresFausses))
+    print(lettresFausses)
+    print("Il vous reste %d coups"%(10-len(lettresFausses)))
+    lettresVrai = update(lettresVrai)
+    lettre = input("\n:\>")
+    return lettre
+
+def addCharAtGoodPos(charToAdd, worldWithBlank):
+    if(worldWithBlank[world.index(charToAdd)] == charToAdd):#if the letter is alerdy in the world
+        worldWithBlank[world.index(charToAdd, world.index(charToAdd)+1)]=charToAdd
+    else:
+        worldWithBlank[world.index(charToAdd)]=charToAdd
+    
 
 
-usr=[""]*(len(chmot))
-usr[0]=chmot[0]
-usr[-1]=chmot[-1]
+wrongChars = []
+trueChars = ['']*len(world)
+trueChars[0] = world[0]
+trueChars[-1] = world[-1]
 
-lettresfauses=[]
-faux =0
-#array of the incorrect lettres
+compareWorld=world[:]
+compareWorld=list(compareWorld)
+del compareWorld[0]
+del compareWorld[-1]
 
-chmotcompare=chmot[:]
-del chmotcompare[0]
-del chmotcompare[-1]
+while( trueChars != list(world) and len(wrongChars) <= 10):
+    lettre = prompt(wrongChars, trueChars)
+    
+    if(lettre in compareWorld):
+        addCharAtGoodPos(lettre, trueChars)
+        compareWorld.remove(lettre)
+    elif(not lettre in compareWorld):
+        if(not lettre in wrongChars):
+            wrongChars.append(lettre)
 
-while (usr != chmot and faux < 10):
-    lettre = input(":\>")
-    if(lettre in chmotcompare):
-        place = int(chmot.index(lettre))
-        if(not usr[place] == ''):
-            localchmot=chmot[:]
-            
-            localchmot[chmot.index(lettre)]=(0)
-            place=int(localchmot.index(lettre))
-        usr[place]=lettre
-        chmotcompare.remove(lettre)
-        #print("usr:",usr)
-        #print("chmotcompare:",chmotcompare)
-        lettrevrai=""#il faut vider la variable a chaque fois pour la reconstruire a chque nouvelle letre juste parce que sinon c pas pratique pour remplacer les emplacement vides par des _
-        for i in usr:
-            if(i==''):
-                lettrevrai+="_ "
-            else:
-                lettrevrai+=i
-        print("\n",lettrevrai)
-    elif(not lettre in chmotcompare):
-        faux+=1
-        
-        if(faux==1):print(d0[0],"\n")
-        elif(faux==2):
-            for i in range(len(d1)):
-                print(d1[i])
-            print("\n")
-        elif(faux==3):
-            for i in range(len(d2)):print(d2[i])
-            print("\n")
-        elif(faux==4):
-            for i in range(len(d3)):print(d3[i])
-            print("\n")
-        elif(faux==5):
-            for i in range(len(d4)):print(d4[i])
-            print("\n")
-        elif(faux==6):
-            for i in range(len(d5)):print(d5[i])
-            print("\n")
-        elif(faux==7):
-            for i in range(len(d6)):print(d6[i])
-            print("\n")
-        elif(faux==8):
-            for i in range(len(d7)):print(d7[i])
-            print("\n")
-        elif(faux==9):
-            for i in range(len(d8)):print(d8[i])
-            print("\n")
-        elif(faux==10):
-            for i in range(len(d9)):print(d9[i])
-            print("GAME OVER\n")
-        print("\nnon il vous reste",10-faux,"essais.")
-        lettresfauses.append(lettre)
-        print("mauvaises lettres :",lettresfauses)
-        lettrevrai=""#il faut vider la variable a chaque fois pour la reconstruire a chque nouvelle letre juste parce que sinon c pas pratique pour remplacer les emplacement vides par des _
-        for i in usr:
-            if(i==''):
-                lettrevrai+="_ "
-            else:
-                lettrevrai+=i
-        print("\n",lettrevrai)
-if(faux >=10):
-    print("\nVouw avez PERDU, le mot que vous cherchiez etait",mot,".")
+if(trueChars == list(world) and len(wrongChars) <= 10):
+    print("\nYOU WIN ! The secret world is : %s"%(world))
 else:
-    print("\nVous avez trouver le bon mot Félicitation !")
+    print("\nLOOSE ! The secret world is : %s"%(world))
