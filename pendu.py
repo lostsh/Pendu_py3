@@ -11,7 +11,7 @@ d7=["_______   ","|     |   ","|     0   ","|    -I-  ","|         ","==========
 d8=["_______   ","|     |   ","|     0   ","|    -I-  ","|    /    ","=========="]
 d9=["_______   ","|     |   ","|     0   ","|    -I-  ","|    / \  ","=========="]
 
-dico=["easy","code","learning","potatoes","consumation","explain"]
+dico=["easy","code","learning","potatoes","consumation","explain","fox","blue","green","orange"]
 world=dico[randrange(0,len(dico))]
 
 def afficherDessin(nbCharWrong):
