@@ -4,7 +4,6 @@ Ceci est en pendu, en `python3`.
 
 L'objectif étant de deviner le mot en moins de *10 essais*.
 
-<hr>
 
 ## Fonctionnement 
 
@@ -14,5 +13,7 @@ Lancer le jeux :
 python3 pendu.py
 ```
 
-<hr>
+## Jeux
+
+![Game Play](gamePlay.gif)
  
