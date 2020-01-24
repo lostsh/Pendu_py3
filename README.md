@@ -11,6 +11,8 @@ Lancer le jeux :
 
 ```bash
 python3 pendu.py
+# Ou encore 
+py pendu.py
 ```
 
 ## Jeux
